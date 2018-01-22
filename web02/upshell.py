@@ -117,6 +117,6 @@ def banner():
 if __name__ == '__main__':
     banner()
     vulnerable_url = config['vulnerable_url']
-    blind = BlindSql(vulnerable_url, verbose=False)
+    blind = BlindSql(vulnerable_url, verbose=True)
     dumb_all_db(blind)
 

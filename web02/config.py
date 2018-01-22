@@ -11,7 +11,7 @@ config = {
     'data': '',
     'vulnerable_param': '',
     'cookie': '',
-    'timeout': 0.05,
+    'timeout': 0,
     'method': 'GET',
     'dbms': 'mysql',
     'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64)',

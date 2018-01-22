@@ -10,7 +10,7 @@ config = {
     'upload_tunna': False,
     'use_tunna_server': False,
     'url_exploit': 'http://admin.test.com/addnews.php?user_id=15',
-    'signal_str': 'Khanh Nguyen',
+    'signal_str': 'Khanh Nguyen',  # signal to assert right respone from webserver
     'data': '',
     'vulnerable_param': '',
     'cookie': '',

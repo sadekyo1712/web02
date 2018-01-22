@@ -8,7 +8,7 @@ config = {
     'git_clone_tunna': 'git clone https://github.com/sadekyo1712/Tunna',
     'run_tunna_server': 'python Tunna/webserver.py',
     'upload_tunna': False,
-    'use_tunna_server': True,
+    'use_tunna_server': False,
     'url_exploit': 'http://admin.test.com/addnews.php?user_id=15',
     'signal_str': 'Khanh Nguyen',
     'data': '',

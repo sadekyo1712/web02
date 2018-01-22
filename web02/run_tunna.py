@@ -3,5 +3,5 @@ from config import config
 
 if __name__ == '__main__':
     # Setup connection
-    upload_tunna_socks(config['verbose'])
-    start_tunna_server(config['verbose'])
+    upload_tunna_socks(False)
+    start_tunna_server(False)
